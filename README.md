@@ -23,7 +23,7 @@ This allows you to enter an environment where everything is setup to work the wa
 Enter the bootstrap environment as so:
 
 ```bash
-nix-shell
+nix-shell # nix-shell --arg sandbox false for demo container
 ```
 
 In this shell we are allowing flakes and have some new programs available, check if you have home-manager on your path:
