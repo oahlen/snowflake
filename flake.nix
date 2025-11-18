@@ -9,6 +9,7 @@
     # There are also stable branches
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Home-Manager lets you install nixpkgs on other distros. Also a powerful dotfiles manager
     home-manager = {
       url = "github:nix-community/home-manager";
 
@@ -20,7 +21,7 @@
 
   # Outputs are usually contextual to the action you want to take, some examples:
   # * devShells: Entrypoints for nix development shells
-  # * homeConfiguration: Entrypoint for building a specific home configuration including packages and dotfiles
+  # * homeConfigurations: Entrypoint for building a specific home configuration including packages and dotfiles
   # * + many more ... the sky is the limit
   outputs =
     {
@@ -52,7 +53,7 @@
           # * aarch64-linux
           # * x86_64-darwin
           # * x86_64-linux
-          "user@host" = makeHomeConfiguration "x86_64-linux" ./homes/user.nix;
+          "user" = makeHomeConfiguration "x86_64-linux" ./homes/user.nix;
         };
 
       # This is the default dev shell for this flake, activated with `nix develop`

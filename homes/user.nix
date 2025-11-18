@@ -9,7 +9,10 @@ let
   user = "user";
 in
 {
-  # Enable home-manager
+  # This is the state when Home-Manager was first installed, never change this after installed your first generation
+  home.stateVersion = "25.05";
+
+  # Enable Home-Manager
   programs.home-manager.enable = true;
 
   # Nicely reload system units when changing configs
@@ -23,8 +26,7 @@ in
 
   # Nix settings
   nix = {
-    # We don't use channels ...
-    channel.enable = false;
+    package = pkgs.nix;
 
     settings = {
       # Reduces space in nix-store by hard-linking identical files
@@ -43,10 +45,14 @@ in
       keep-derivations = true
     '';
 
+    # Force the same nixpkgs instance that bulilt this flake for ad hoc commands and shells
+    keepOldNixPath = false;
+    nixPath = [ "${nixpkgs}" ];
+
     gc = {
       # Clean up after ourselves
       automatic = true;
-      frequency = "weekly";
+      dates = "weekly";
       options = "--delete-older-than 14d";
     };
   };
@@ -56,18 +62,15 @@ in
     username = "${user}";
     homeDirectory = "/home/${user}";
 
-    # Environment variables
-    sessionVariables = {
-      # Force the same nixpkgs instance that bulilt this flake for ad hoc commands and shells
-      NIX_PATH = lib.mkForce "nixpkgs=${nixpkgs}";
-    };
-
     # Import defined packages to install
     packages = import ./packages.nix pkgs;
   };
 
   # Enable dconf, needed by home-manager ...
   dconf.enable = true;
+
+  # Let Home-Manager manage your user bash profile to allow automatic integration with direnv
+  programs.bash.enable = true;
 
   # Enable direnv, this lets you automatically enter dev shells when changing directory
   programs.direnv = {
