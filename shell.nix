@@ -9,7 +9,9 @@ in
 {
   default = pkgs.mkShell {
     # Enable experimental features without having to specify the argument
-    NIX_CONFIG = "experimental-features = nix-command flakes\nsandbox = ${sandbox}";
+    NIX_CONFIG = "experimental-features = nix-command flakes\nsandbox = ${
+      if sandbox then "true" else "false"
+    }";
 
     packages = with pkgs; [
       git

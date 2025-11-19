@@ -35,7 +35,7 @@ home-manager --version
 To install the first home-manager generation make sure to update the user variable in the file `homes/user.nix` on line **9** to your Linux username, then run the following command:
 
 ```bash
-home-manager switch --flake .#user@host
+home-manager switch --flake .#user
 ```
 
 Congratz, your first home-manager generation has been created.
