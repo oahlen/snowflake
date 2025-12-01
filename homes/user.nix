@@ -30,6 +30,9 @@ in
       # Reduces space in nix-store by hard-linking identical files
       auto-optimise-store = true;
 
+      # Sandbox is enabled by default and can be removed
+      sandbox = true;
+
       # Enables new nix commands and flakes
       experimental-features = "nix-command flakes";
 

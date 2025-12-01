@@ -11,9 +11,9 @@ pkgs.mkShell {
       # Your desired python runtime
       python313
       # Python language server
-      pyright
+      # pyright
       # Python linter
-      ruff
+      # ruff
     ]
     # Add packages for the python 3.13 environment (similar to uv/venv)
     ++ (with pkgs.python313Packages; [
