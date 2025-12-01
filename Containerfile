@@ -16,6 +16,8 @@ RUN su - arch -c 'mkdir -p ~/.config/nix && echo "sandbox = false" > ~/.config/n
 USER arch
 ENV USER=arch
 
+Add bootstrap.sh /home/arch/bootstrap.sh
+
 # Environment for non-login shells
 ENV PATH=/home/arch/.nix-profile/bin:/home/arch/.nix-profile/sbin:$PATH
 
