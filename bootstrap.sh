@@ -6,7 +6,7 @@ git clone https://github.com/oahlen/snowflake.git
 cd "$HOME/snowflake" || exit
 
 sed -i 's/user = "user";/user = "arch";/' "$HOME/snowflake/homes/user.nix"
-sed -i 's/sanbox = true;/sandbox = false;/' "$HOME/snowflake/homes/user.nix"
+sed -i 's/sandbox = true;/sandbox = false;/' "$HOME/snowflake/homes/user.nix"
 
 rm "$HOME/.bashrc"
 rm "$HOME/.bash_profile"
