@@ -11,7 +11,7 @@
 
     # Home-Manager lets you install nixpkgs on other distros. Also a powerful dotfiles manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
 
       # This strange line tells home-manager to use the exact same nixpkgs as the one defined above
       # This is great since it guarantees that packages installed to your home environment and in specific shells are of the same version
