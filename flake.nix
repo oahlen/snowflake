@@ -7,7 +7,7 @@
   inputs = {
     # This is the unstable channel with the most up to date packages
     # There are also stable branches
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     # Home-Manager lets you install nixpkgs on other distros. Also a powerful dotfiles manager
     home-manager = {
