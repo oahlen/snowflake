@@ -32,10 +32,19 @@ In this shell we are allowing flakes and have some new programs available, check
 home-manager --version
 ```
 
-To install the first home-manager generation make sure to update the user variable in the file `homes/user.nix` on line **9** to your Linux username, then run the following command:
+To install the first home-manager generation make sure to update the user variable in the file `homes/user.nix` on line **8** to your Linux username, then run the following command:
 
 ```bash
 home-manager switch --flake .#user
+```
+
+### Cleanup existing files
+
+The default home-manager configuration takes ownership of some files, namely: `~/.bashrc`, `~/.bash_profile` and `~/.config/nix/nix.conf`.
+Remove or backup these files to be able to proceed with the home-manager switch operation:
+
+```bash
+rm -rf ~/.bashrc ~/.bash_profile ~/.config/nix/nix.conf
 ```
 
 Congratz, your first home-manager generation has been created.
