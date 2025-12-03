@@ -1,12 +1,9 @@
 {
   nixpkgs,
   pkgs,
+  user,
   ...
 }:
-let
-  # Change this to your user
-  user = "user";
-in
 {
   # This is the state when Home-Manager was first installed, never change this after installed your first generation
   home.stateVersion = "25.05";

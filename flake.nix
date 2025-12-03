@@ -32,21 +32,24 @@
     {
       homeConfigurations =
         let
+          # Change to your real username on the machine
+          user = "user";
+
           # Function for creating a home-manager configuration using the pinned home-manager and nixpkgs revision
           makeHomeConfiguration =
-            system: module:
+            system: user: module:
             home-manager.lib.homeManagerConfiguration {
               pkgs = nixpkgs.legacyPackages.${system};
 
               # Inherit the nixpkgs instance so that we can pinned it in NIX_PATH
-              extraSpecialArgs = { inherit nixpkgs; };
+              extraSpecialArgs = { inherit nixpkgs user; };
 
               # The home-manager module to build
               modules = [ module ];
             };
         in
         {
-          # Change to your user + hostname, we assume you are using the x86_64 architecture
+          # Change to your user + hostname, we assume you are using the x86_64 linux architecture
           #
           # Some available architectures are:
           # * aarch64-darwin
@@ -56,20 +59,31 @@
           "user" = makeHomeConfiguration "x86_64-linux" ./homes/user.nix;
         };
 
-      # This is the default dev shell for this flake, activated with `nix develop`
-      devShells."x86_64-linux".default =
+      # Development shells for this Flake
+      devShells."x86_64-linux" =
         let
           pkgs = import nixpkgs { system = "x86_64-linux"; };
         in
-        pkgs.mkShell {
-          # Enable experimental features + flakes without having to specify the argument
-          NIX_CONFIG = "experimental-features = nix-command flakes";
+        {
+          # This is the default dev shell for this flake, activated with `nix develop`
+          default = pkgs.mkShell {
+            # Enable experimental features + flakes without having to specify the argument
+            NIX_CONFIG = "experimental-features = nix-command flakes";
 
-          # Put your desired packages here
-          packages = with pkgs; [
-            git
-            nix
-          ];
+            packages = with pkgs; [
+              git
+              home-manager
+              nix
+            ];
+          };
+
+          # This is another shell called "playground", activated with `nix develop .#playground`
+          playground = pkgs.mkShell {
+            # Put your desired packages here
+            packages = with pkgs; [
+              hello
+            ];
+          };
         };
     };
 }

@@ -50,7 +50,7 @@ In this shell we are allowing flakes and have some new programs available, check
 home-manager --version
 ```
 
-To install the first home-manager generation make sure to update the user variable in the file `homes/user.nix` on line **8** to your Linux username, then run the following command:
+To install the first home-manager generation make sure to update the user variable in the file `flake.nix` on line **36** to your Linux username, then run the following command:
 
 ```bash
 home-manager switch --flake .#user
