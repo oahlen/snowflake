@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# This script is only for demo purposes and can be ignored
+
 cd "$HOME" || exit
 
 git clone https://github.com/oahlen/snowflake.git

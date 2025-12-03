@@ -48,7 +48,7 @@ in
 
     # Force the same nixpkgs instance that bulilt this flake for ad hoc commands and shells
     keepOldNixPath = false;
-    nixPath = [ "${nixpkgs}" ];
+    nixPath = [ "nixpkgs=${nixpkgs}" ];
 
     gc = {
       # Clean up after ourselves
