@@ -16,6 +16,7 @@ in
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
   # Disable news notification for home-manager
   news.display = "silent";
 

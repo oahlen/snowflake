@@ -1,12 +1,13 @@
 # Do you want to build a snowflake?
 
-This repository is aimed at gettting you started on your Nix journey
+This repository is aimed at getting you started on your Nix journey
 
 Some useful links:
 
 * https://nixos.org - Main Nix homepage and where you find installation instructions
 * https://search.nixos.org - Search for packages in nixpkgs
 * https://nix.dev - Official Nix documentation and guides
+* https://zero-to-nix.com - Comprehensive Nix documentation including Flakes
 * https://nix-community.github.io/home-manager/options.xhtml - Documentation of home-manager including what options you can set
 * https://nixos.org/guides/nix-pills - A deeper dive in Nix if you want to learn more
 
@@ -16,13 +17,22 @@ Download and install Nix on your Linux distribution, if Nix is not packaged use 
 Follow the official instructions and you should be able to run:
 
 ```bash
- nix --version
+nix --version
 ```
+
+### Make sure you are a trusted user
+
+To be able to control nix settings through your user/home-manager make sure your are added as a trusted user in the global nix config.
+
+Add the line `trusted-users = root YOURUSER` to the file `/etc/nix/nix.conf`.
+To make the change take effect run `sudo systemctl restart nix-daemon` to make the daemon use the new settings.
+
+NOTE that this only applies for **multi user installations** (the recommended way of installing nix)
 
 ## Bootstrap your environment
 
 This repo exposes a starter Flake template to be customized for your needs.
-Flakes are as of now marked as an **experimental feature** but fear not, they are already widely adopted and will not go anywhere anytime soon.
+Flakes are as of now marked as an **experimental feature** but fear not, they are already widely adopted and will not go anywhere anytime soong
 
 To actually use flakes you have to tell nix to allow flake usage.
 Simplest way to do this is to enter the bootstrap dev shell present in this repo.
@@ -48,7 +58,7 @@ home-manager switch --flake .#user
 
 ### Cleanup existing files
 
-The default home-manager configuration takes ownership of some files, namely: `~/.bashrc`, `~/.bash_profile` and `~/.config/nix/nix.conf`.
+The default home-manager configuration takes ownership of some files, namely: `~/.bashrc`, `~/.bash_profile`, `~/.profile` and `~/.config/nix/nix.conf`.
 Remove or backup these files to be able to proceed with the home-manager switch operation:
 
 ```bash
@@ -59,7 +69,7 @@ Congratz, your first home-manager generation has been created.
 Now you can start to install packages in a declarative and reproducible way!
 
 We can now exit the bootstrap shell with `exit` to go back to your regular shell.
-If all went well `home-manager` should still be present on your path and flakes are avaiable.
+If all went well `home-manager` should still be present on your path and flakes are available.
 
 To install more packages add them to the file `homes/packages.nix` and then run the `switch` command again.
 
