@@ -2,6 +2,14 @@
 
 This repository is aimed at gettting you started on your Nix journey
 
+Some useful links:
+
+* https://nixos.org - Main Nix homepage and where you find installation instructions
+* https://search.nixos.org - Search for packages in nixpkgs
+* https://nix.dev - Official Nix documentation and guides
+* https://nix-community.github.io/home-manager/options.xhtml - Documentation of home-manager including what options you can set
+* https://nixos.org/guides/nix-pills - A deeper dive in Nix if you want to learn more
+
 ## Getting started
 
 Download and install Nix on your Linux distribution, if Nix is not packaged use the install script on the official [website](https://nixos.org).
