@@ -65,6 +65,9 @@ Remove or backup these files to be able to proceed with the home-manager switch 
 rm -rf ~/.bashrc ~/.bash_profile ~/.config/nix/nix.conf
 ```
 
+NOTE: If you don't want to manage your bashrc though home-manager disable the integration with `programs.bash.enable = false;`
+Direnv integration will not work out of the box in this case.
+
 Congratz, your first home-manager generation has been created.
 Now you can start to install packages in a declarative and reproducible way!
 
@@ -92,3 +95,35 @@ home-manager switch --flake .#user
 ```
 
 Think of the first command as `sudo apt-get update` and the second command as `sudo apt-get upgrade`.
+
+## Direnv
+
+The base home-manager config sets up direnv + nix-direnv for smarter and more ergonomic nix shell integration.
+In essence you can automatically enter a dev shell for a given directory by moving into it.
+
+To do this create a `.envrc` file in the directory in question with the following content:
+
+```
+use nix <nix_shell_file>
+```
+
+Afterwards run the `direnv allow` command to mark this directory as trusted.
+
+For flake based dev shells use:
+
+```
+use flake .
+```
+
+in the same directory as the `flake.nix`.
+
+## Shell templates
+
+In the directory `shells` are some templates for common languages/toolchains.
+They are just examples of shells I usually use.
+Edit or take inspiration from them to suit your needs.
+
+Do note that they are written for the old `nix-shell` style invocation.
+To use them in a Flake copy the `pkgs.mkShell` block into a `flake.nix` file similar to the one in this repo.
+
+Then invoke the shell with `nix develop .#<shell_name>`
