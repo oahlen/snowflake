@@ -37,7 +37,7 @@
 
           # Function for creating a home-manager configuration using the pinned home-manager and nixpkgs revision
           makeHomeConfiguration =
-            system: user: module:
+            system: module:
             home-manager.lib.homeManagerConfiguration {
               pkgs = nixpkgs.legacyPackages.${system};
 
